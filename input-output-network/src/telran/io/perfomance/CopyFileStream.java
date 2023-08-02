@@ -33,15 +33,19 @@ public class CopyFileStream implements CopyFile {
 			long timeStop = System.currentTimeMillis();
 
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+		}catch (IOException e) {
+			throw new RuntimeException(e.toString());
 		} finally {
 			try {
 				if(inputStream != null) {
 					inputStream.close();
 				}
+			} catch (IOException ioException) {
+				ioException.toString();
+			}
+			try {
 				if(outputStream != null) {
 					outputStream.close();
 				}

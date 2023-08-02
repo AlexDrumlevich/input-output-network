@@ -10,6 +10,7 @@ public class CopyFileConpilesAppl {
 	public static void main(String[] args) {
 		
 		int[] bufferByteSizes = {10_000, 100_000, 1_000_000, 100_000_000};
+		//TO DO 
 		String pathToSource = "/Users/alexeydrumlevich/Фото и видео/IMG_3745.MOV";
 		String pathToDestination = "copy";
 		
@@ -19,8 +20,13 @@ public class CopyFileConpilesAppl {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+			//CopyFileStream
 			new CopyPerfomanceTest("copy file perfomance", 1, pathToSource, pathToDestination, new CopyFileStream(bufferSize)).run();
 		}
+		
+		//CopyFileTransfer
+		new CopyPerfomanceTest("copy file perfomance", 1, pathToSource, pathToDestination, new CopyFileTransfer()).run();
+		
 		
 		
 	}
