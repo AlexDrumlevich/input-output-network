@@ -10,7 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.stream.IntStream;
 public class LineOrientedStreams {
-	private static final int N_PRINTS = 10_000_000;
+	private static final int N_PRINTS = 1_000_000;
 	String hello = "Hello";
 
 @Test
@@ -44,7 +44,7 @@ void smallFilePrintWriter() throws IOException{
 
 
 @Test
-@Disabled
+
 //PrintStream - performance
 void performancePrintStream() throws IOException{
 	try(PrintStream stream = new PrintStream("bigFile")) {
@@ -53,7 +53,14 @@ void performancePrintStream() throws IOException{
 }
 
 @Test
-@Disabled
+void performanceBufferPrintStream() throws IOException{
+	try(PrintStream stream = new PrintStream(new BufferedOutputStream(new FileOutputStream("bigFile")), false)) {
+	IntStream.range(0, N_PRINTS).forEach(i -> stream.println(hello));
+	}
+}
+
+@Test
+
 //PrintWriter - performance
 void performancePrintWriter() throws IOException{
 	try(PrintWriter stream = new PrintWriter("bigFile")) {
