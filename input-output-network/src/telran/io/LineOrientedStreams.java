@@ -12,22 +12,37 @@ import java.util.stream.IntStream;
 public class LineOrientedStreams {
 	private static final int N_PRINTS = 10_000_000;
 	String hello = "Hello";
+
 @Test
-@Disabled
+
 //PrintStream - result immediately
 void smallFilePrintStream() throws IOException{
 	PrintStream printStream = new PrintStream("printStream.txt") ;
 	printStream.println("Hello World");
-	printStream.close();
+	//printStream.close();
 }
+
 @Test
-@Disabled
+
+//PrintStream - result immediately
+void smallFilePrintStreamWithBuffer() throws IOException{
+	PrintStream printStream = new PrintStream(new BufferedOutputStream(new FileOutputStream("printStreamBuffer.txt")), false);
+	printStream.println("Hello World");
+	//printStream.close();
+}
+
+
+@Test
+
 //PrintWriter - throw buffer
 void smallFilePrintWriter() throws IOException{
 	PrintWriter printWriter = new PrintWriter("printWriter.txt") ;
 	printWriter.println("Hello World");
-	printWriter.close();
+	//printWriter.close();
 }
+
+
+
 @Test
 @Disabled
 //PrintStream - performance
@@ -36,6 +51,7 @@ void performancePrintStream() throws IOException{
 	IntStream.range(0, N_PRINTS).forEach(i -> stream.println(hello));
 	}
 }
+
 @Test
 @Disabled
 //PrintWriter - performance
@@ -44,7 +60,9 @@ void performancePrintWriter() throws IOException{
 	IntStream.range(0, N_PRINTS).forEach(i -> stream.println(hello));
 	}
 }
+
 @Test
+@Disabled
 //BufferedReader - for any resources
 //readLine() - for any resources
 //lines() - for files only
