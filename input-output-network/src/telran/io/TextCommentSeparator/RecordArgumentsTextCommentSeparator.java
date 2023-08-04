@@ -1,15 +1,14 @@
 package telran.io.TextCommentSeparator;
 
-import java.nio.file.Path;
 
-record RecordArgumentsTextCommentSeparator(String soucePathString, String textDestinationPathString, String commentsDestinationPathString) {
+record RecordRequiredArgumentsTextCommentSeparator(String soucePathString, String textDestinationPathString, String commentsDestinationPathString) {
 		
-	static RecordArgumentsTextCommentSeparator getRecordArgumentsTextCommentSeparator(String[] arguStrings) {
-	
-		if(arguStrings.length != RecordArgumentsTextCommentSeparator.class.getDeclaredFields().length) {
-			throw new IllegalArgumentException(String.format(" Count of arguments must be %d", RecordArgumentsTextCommentSeparator.class.getFields().length));
+	static RecordRequiredArgumentsTextCommentSeparator getRecordRequiredArgumentsTextCommentSeparator(String[] arguStrings) {
+			
+		if(arguStrings.length != RecordRequiredArgumentsTextCommentSeparator.class.getDeclaredFields().length) {
+			throw new IllegalArgumentException(String.format(" Count of arguments must be %d", RecordRequiredArgumentsTextCommentSeparator.class.getDeclaredFields().length));
 		}
-		return new RecordArgumentsTextCommentSeparator(arguStrings[0], arguStrings[1], arguStrings[2]);
+		return new RecordRequiredArgumentsTextCommentSeparator(arguStrings[0], arguStrings[1], arguStrings[2]);
 	}
 	
 

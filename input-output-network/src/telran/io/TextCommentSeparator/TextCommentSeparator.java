@@ -9,7 +9,8 @@ import java.nio.file.Path;
 
 public class TextCommentSeparator {
 	public static void main(String[] args) {
-		RecordArgumentsTextCommentSeparator recordArgumentsTextCommentSeparator = RecordArgumentsTextCommentSeparator.getRecordArgumentsTextCommentSeparator(args);
+		
+		RecordRequiredArgumentsTextCommentSeparator recordArgumentsTextCommentSeparator = RecordRequiredArgumentsTextCommentSeparator.getRecordRequiredArgumentsTextCommentSeparator(args);
 		separateSourceIntoTextComments(
 				getAbsoluteNormalizedPathString(recordArgumentsTextCommentSeparator.soucePathString()),
 				getAbsoluteNormalizedPathString(recordArgumentsTextCommentSeparator.textDestinationPathString()),
