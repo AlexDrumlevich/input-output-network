@@ -5,6 +5,8 @@ import java.io.FileReader;
 import java.io.PrintWriter;
 import java.nio.file.Path;
 
+import javax.sound.sampled.Line;
+
 
 
 public class TextCommentSeparator {
@@ -27,11 +29,9 @@ public class TextCommentSeparator {
 			PrintWriter textWriter = new PrintWriter(textDestinationPath);
 			PrintWriter commentsWriter = new PrintWriter(commentsDestinationPath)) {
 		
-			String line = null;
-			while ((line = bufferedReader.readLine()) != null) {
+			bufferedReader.lines().forEach(line -> {
 				if(line.matches(".*//.*")) {
 					if(line.matches("(\s*\t*)*//.*") ) {
-						commentsWriter.println(line);
 					} else {
 						String[] lines = line.split("//", 2);
 						textWriter.println(lines[0]);
@@ -40,9 +40,21 @@ public class TextCommentSeparator {
 				} else {
 					textWriter.println(line);
 				}	
-			}
+			});
+			
+			/*
+			Map<String, List<String>> map = reader.lines()
+					.collect(Collectors
+							.groupingBy(s -> s.trim().startsWith("//") ?
+									COMMENTS : TEXT));
+			map.getOrDefault(COMMENTS, Collections.emptyList())
+			.forEach(comments::println);
+			map.getOrDefault(TEXT, Collections.emptyList())
+			.forEach(text::println);
+			*/
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+	
 }
