@@ -23,7 +23,7 @@ public class TcpServer implements Runnable {
 	public void run() {
 		System.out.println("Server is listening on port " + port);
 		try {
-			while(true) {
+			while(!executorService.isShutdown()) {
 				Socket socket = serverSocket.accept();
 				TcpClientServer clientServer = new TcpClientServer(socket, protocol);
 				executorService.execute(clientServer);
